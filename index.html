@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="Case studies for Directed Context Graph Augmentation in soccer action recognition."
+    >
+    <meta name="theme-color" content="#09251f">
+    <title>DCGA · Soccer Action Recognition Cases</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#case-explorer">Skip to cases</a>
+
+    <header class="hero hero--slim">
+      <div class="hero-grid-overlay" aria-hidden="true"></div>
+      <nav class="topbar" aria-label="Page identity">
+        <a class="brand" href="#top" aria-label="DCGA case study home">
+          <span class="brand-mark" aria-hidden="true">
+            <span></span><span></span><span></span><span></span>
+          </span>
+          <span>DCGA</span>
+        </a>
+        <p>Soccer action recognition <span aria-hidden="true">·</span> 6 cases</p>
+      </nav>
+
+      <div class="hero-lede" id="top">
+        <p class="eyebrow">Directed Context Graph Augmentation</p>
+        <h1>Skeleton motion, with and without match context.</h1>
+        <p class="hero-summary">
+          Each case shows one clip twice — the player-centered skeleton alone,
+          then the same skeleton with ball trajectory and global pitch position.
+        </p>
+      </div>
+    </header>
+
+    <main>
+      <section class="case-explorer section-shell" id="case-explorer" aria-label="Cases">
+        <div class="case-navigation">
+          <button class="case-step" id="previous-case" type="button" aria-label="Previous case">
+            <svg viewBox="0 0 20 20" aria-hidden="true">
+              <path d="m12.5 4.5-5.5 5.5 5.5 5.5"></path>
+            </svg>
+          </button>
+          <div class="case-tabs" id="case-tabs" role="tablist" aria-label="Select a case"></div>
+          <button class="case-step" id="next-case" type="button" aria-label="Next case">
+            <svg viewBox="0 0 20 20" aria-hidden="true">
+              <path d="m7.5 4.5 5.5 5.5-5.5 5.5"></path>
+            </svg>
+          </button>
+        </div>
+
+        <article class="case-study-card" id="case-panel" role="tabpanel">
+          <header class="case-header">
+            <div class="case-title-line">
+              <h2 id="case-title">Player 1</h2>
+              <span class="ground-truth-chip" id="ground-truth">Ground truth · Shooting</span>
+            </div>
+          </header>
+
+          <div class="visual-grid">
+            <section class="model-visual model-visual-baseline" aria-labelledby="baseline-visual-title">
+              <header class="model-visual-header">
+                <div>
+                  <p>Without context</p>
+                  <h3 id="baseline-visual-title">Skeleton only</h3>
+                </div>
+              </header>
+              <div class="canvas-wrap canvas-wrap-pose">
+                <canvas
+                  id="pose-canvas"
+                  role="img"
+                  aria-label="Animated player-centered skeleton without ball or pitch context"
+                ></canvas>
+              </div>
+              <div class="prediction-block">
+                <p class="prediction-caption">Top-3 prediction</p>
+                <div class="prediction-list" id="baseline-predictions"></div>
+              </div>
+            </section>
+
+            <section class="model-visual model-visual-dcga" aria-labelledby="dcga-visual-title">
+              <header class="model-visual-header">
+                <div>
+                  <p>With DCGA</p>
+                  <h3 id="dcga-visual-title">Skeleton + ball + pitch</h3>
+                </div>
+              </header>
+              <div class="canvas-wrap canvas-wrap-context">
+                <canvas
+                  id="context-canvas"
+                  role="img"
+                  aria-label="Animated skeleton in global pitch coordinates with the ball"
+                ></canvas>
+              </div>
+              <div class="prediction-block">
+                <p class="prediction-caption">Top-3 prediction</p>
+                <div class="prediction-list" id="dcga-predictions"></div>
+              </div>
+            </section>
+          </div>
+
+          <div class="playback-controls" aria-label="Synchronized playback controls">
+            <div class="playback-buttons">
+              <button class="play-button" id="play-button" type="button" aria-label="Pause animation">
+                <span aria-hidden="true">Ⅱ</span>
+              </button>
+              <button class="icon-button" id="replay-button" type="button" aria-label="Replay from start">
+                <svg viewBox="0 0 20 20" aria-hidden="true">
+                  <path d="M4.1 7.2A6.5 6.5 0 1 1 3.6 12M4 3v4.5h4.5"></path>
+                </svg>
+              </button>
+            </div>
+
+            <div class="timeline-group">
+              <label for="timeline">Timeline</label>
+              <input id="timeline" type="range" min="0" max="49" step="0.01" value="0">
+            </div>
+
+            <p class="frame-counter" id="frame-counter">Frame 01 / 50 <span>0.00 s</span></p>
+
+            <div class="speed-control" aria-label="Playback speed">
+              <button type="button" data-speed="0.5">0.5×</button>
+              <button class="is-active" type="button" data-speed="1">1×</button>
+              <button type="button" data-speed="2">2×</button>
+            </div>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <footer>
+      <div class="section-shell footer-inner">
+        <p>Context-Aware Adaptation of Skeleton Motion Representations for Soccer Action Understanding</p>
+      </div>
+    </footer>
+
+    <noscript>This case study requires JavaScript for synchronized motion playback.</noscript>
+    <script src="case-data.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
